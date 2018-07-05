@@ -1,0 +1,10 @@
+Blog list
+
+{{#each model as |post|}}
+   <box fit class="blog-post">
+     {{link-to post.attributes.title 'blog.post' post.attributes.slug class="title"}}
+
+     <div class="attribution">
+       By {{post.attributes.author}}
+   </box>
+{{/each}}

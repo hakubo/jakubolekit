@@ -2,23 +2,49 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    rssFeed: require('./config/rss-feed'),
+    vendorFiles: {
+      'jquery.js': null
+    },
+    prember: {
+      urls: buildPremberUrls()
+    },
+    'ember-prism': {
+      theme: 'solarizedlight',
+      components: ['markup-templating', 'scss', 'javascript', 'handlebars', 'json'],
+      plugins: ['normalize-whitespace', 'line-numbers', 'autolinker']
+    }
   });
 
-  // Use `app.import` to add additional libraries to the generated
-  // output files.
-  //
-  // If you need to use different assets in different
-  // environments, specify an object as the first parameter. That
-  // object's keys should be the environment name and the values
-  // should be the asset to use in that environment.
-  //
-  // If the library that you are including contains AMD or ES6
-  // modules that you would like to import into your application
-  // please specify an object with the list of modules as keys
-  // along with the exports of each module as its value.
+  app.import('vendor/particles.min.js');
 
   return app.toTree();
 };
+
+function buildPremberUrls() {
+  // Build prember urls
+  const urls = [
+    '/',
+    '/contact',
+    '/blog/',
+  ];
+
+  const { extname } = require('path');
+  const walkSync = require('walk-sync');
+
+  const paths = walkSync('src/blog');
+
+  const mdFiles = paths.filter(path => extname(path) === '.md')
+    .map((path) => {
+      const stripMD = path.replace(/\.md/, '');
+      return `/blog/${stripMD}/`;
+    });
+
+  mdFiles.forEach((file) => {
+    urls.push(file);
+  });
+
+  return urls;
+}

@@ -1,19 +1,44 @@
 'use strict';
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   let ENV = {
+    'ember-resolver': {
+      features: {
+        EMBER_RESOLVER_MODULE_UNIFICATION: true
+      }
+    },
     modulePrefix: 'jakubolekit',
     environment,
     rootURL: '/',
-    locationType: 'auto',
+    locationType: 'router-scroll',
+    historySupportMiddleware: true,
     EmberENV: {
       FEATURES: {
-        // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
+        FEATURES: {
+          // Here you can enable experimental features on an ember canary build
+          // e.g. 'with-controller': true
+          'ember-module-unification': true
+        },
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
         Date: false
+      },
+      analytics: {
+        integrations: [
+          {
+            name: 'GoogleAnalytics',
+            config: {
+              id: 'UA-121804328-1',
+              remarketing: true,
+              ecommerce: true,
+              enhancedEcommerce: false,
+              set: {
+                anonymizeIp: true
+              }
+            }
+          }
+        ]
       }
     },
 
@@ -21,6 +46,20 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     }
+  };
+
+  ENV['ember-cli-markdown-resolver'] = {
+    folders: {
+      blog: 'src/blog'
+    }
+  };
+
+  ENV['ember-meta'] = {
+    description: 'Ramblings about Ember.js, JavaScript, life, Managment, and the pursuit of happiness.',
+    imgSrc: 'http://i.imgur.com/KVqNjgO.png',
+    siteName: 'Jakub Olek\'s place to share',
+    title: 'Blog - Jakub Olek',
+    url: 'https://jakub.olek.it'
   };
 
   if (environment === 'development') {

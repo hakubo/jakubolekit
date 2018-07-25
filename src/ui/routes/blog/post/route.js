@@ -9,4 +9,4 @@ export default class PostRoute extends Route {
 
     return this.markdownResolver.file('blog', withoutSlash);
   }
-};
+}

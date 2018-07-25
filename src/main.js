@@ -11,6 +11,6 @@ const App = Application.extend({
 
 loadInitializers(App, config.modulePrefix + "/src/init");
 
-loadInitializers(App, config.modulePrefix);
+loadInitializers(App, config.modulePrefix + '/src');
 
 export default App;

@@ -12,6 +12,9 @@ module.exports = function (defaults) {
       theme: 'solarizedlight',
       components: ['markup-templating', 'scss', 'javascript', 'handlebars', 'json'],
       plugins: ['normalize-whitespace', 'line-numbers', 'autolinker']
+    },
+    eslint: {
+      extensions: [''],
     }
   });
 

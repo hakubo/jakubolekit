@@ -2,47 +2,56 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-module.exports = function (defaults) {
+module.exports = function(defaults) {
+  const environment = EmberApp.env();
+  const IS_PROD = environment === 'production';
+  const IS_TEST = environment === 'test';
+
   let app = new EmberApp(defaults, {
+    hinting: IS_TEST,
+    tests: IS_TEST,
+    babel: {
+      loose: true
+    },
+    'ember-cli-babel': {
+      //includePolyfill: IS_PROD,
+    },
+    autoprefixer: {
+      sourcemap: false,
+    },
+    sourcemaps: {
+      enabled: true, // open issue for [MU]
+    },
     rssFeed: require('./config/rss-feed'),
     prember: {
-      urls: buildPremberUrls()
+      urls: buildPremberUrls(),
     },
-    'ember-prism': {
-      theme: 'solarizedlight',
-      components: ['markup-templating', 'scss', 'javascript', 'handlebars', 'json'],
-      plugins: ['normalize-whitespace', 'line-numbers', 'autolinker']
-    },
-    eslint: {
-      extensions: [''],
+    vendor: {
+      'ember-cli-shims': null,
+      'jquery': null
     }
   });
-
-  app.import('vendor/particles.min.js');
 
   return app.toTree();
 };
 
 function buildPremberUrls() {
   // Build prember urls
-  const urls = [
-    '/',
-    '/contact',
-    '/blog/',
-  ];
+  const urls = ['/'];
 
   const { extname } = require('path');
   const walkSync = require('walk-sync');
 
-  const paths = walkSync('src/blog');
+  const paths = walkSync('app/blog');
 
-  const mdFiles = paths.filter(path => extname(path) === '.md')
-    .map((path) => {
+  const mdFiles = paths
+    .filter(path => extname(path) === '.md')
+    .map(path => {
       const stripMD = path.replace(/\.md/, '');
-      return `/blog/${stripMD}/`;
+      return `/${stripMD}/`;
     });
 
-  mdFiles.forEach((file) => {
+  mdFiles.forEach(file => {
     urls.push(file);
   });
 

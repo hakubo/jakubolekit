@@ -1,0 +1,69 @@
+@import './prism-theme.scss';
+
+html {
+  font-family: 'Montserrat', sans-serif;
+  background: #fdf6e3;
+  font-size: 20px;
+  color: #002b36;
+}
+
+header {
+  font-family: 'Merriweather', serif;
+  font-size: 2rem;
+
+  &:not(.main-page) {
+    font-size: 1.2rem;
+  }
+}
+
+.main-header {
+  transition: font-size .3s;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.intro {
+  clear: both;
+  line-height: 50px;
+  margin-bottom: 100px;
+}
+
+.avatar {
+  float: left;
+  border-radius: 100%;
+  width: 50px;
+  margin-right: 10px
+}
+
+.blog-post {
+
+  &-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 5px 0;
+  }
+
+  &-description {
+    font-style: italic;
+  }
+}
+
+.byline {
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+a {
+  color: #268bd2;
+  text-decoration: none;
+}
+
+.footer {
+  border-top: 1px dashed #dc322f;
+  padding: 20px;
+}

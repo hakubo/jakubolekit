@@ -1,0 +1,15 @@
+{{head-layout}}
+<div class="container">
+  <header class="main-header {{if isMainPage "main-page"}}">
+    <h1>
+      {{#link-to "blog"}}Jakub Olek{{/link-to}}
+    </h1>
+  </header>
+  {{outlet}}
+</div>
+<footer class="footer">
+  Find me on
+  <a href="https://github.com/hakubo">GitHub</a>,
+  <a href="https://www.linkedin.com/in/jakubolek/">LinkedIn</a>, and
+  <a href="https://twitter.com/JakubOlek">Twitter</a>
+</footer>

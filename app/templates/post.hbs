@@ -1,0 +1,19 @@
+
+
+{{#if model.content}}
+<header>
+  <h2>
+    {{model.attributes.title}}
+  </h2>
+  <div class="byline">
+    {{format-date model.attributes.date}}
+  </div>
+</header>
+
+<div class="post-content">
+  {{markdown-to-html model.content simpleLineBreaks=true}}
+</div>
+{{else}}
+  <h1>Not Found</h1>
+  Oops, {{this.target.currentURL}} does not exists. Yet?
+{{/if}}

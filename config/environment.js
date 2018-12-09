@@ -4,7 +4,6 @@ module.exports = function (environment) {
   let ENV = {
     'ember-resolver': {
       features: {
-        EMBER_RESOLVER_MODULE_UNIFICATION: true
       }
     },
     modulePrefix: 'jakubolekit',
@@ -16,7 +15,6 @@ module.exports = function (environment) {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
-        'ember-module-unification': true
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
@@ -48,16 +46,17 @@ module.exports = function (environment) {
 
   ENV['ember-cli-markdown-resolver'] = {
     folders: {
-      blog: 'src/blog'
+      blog: 'app/blog'
     }
   };
 
   ENV['ember-meta'] = {
-    description: 'Ramblings about Ember.js, JavaScript, life, Managment, and the pursuit of happiness.',
+    description: 'Notes and scribbles by Jakub Olek',
     imgSrc: 'http://i.imgur.com/KVqNjgO.png',
-    siteName: 'Jakub Olek\'s place to share',
-    title: 'Blog - Jakub Olek',
-    url: 'https://jakub.olek.it'
+    twitterUsername: 'JakubOlek',
+    siteName: 'Jakub Olek\'s personal blog',
+    title: 'Notes and scribbles',
+    url: 'http://jakub.olek.it/'
   };
 
   if (environment === 'development') {

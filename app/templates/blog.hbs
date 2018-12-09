@@ -1,0 +1,26 @@
+<div class="intro">
+  <img class="avatar" src="/assets/avatar.webp" />
+  Notes and scribbles by
+  <a href="https://twitter.com/JakubOlek">
+    Jakub Olek
+  </a>
+</div>
+{{#each model as |post|}}
+  <header class="blog-post">
+    <div class="blog-post-title">
+      {{link-to
+        post.attributes.title
+        "post"
+        post.attributes.slug
+        class="title"
+      }}
+    </div>
+    <div class="description">
+      {{post.attributes.description}}
+    </div>
+    <div class="byline">
+      Posted on
+      {{format-date post.attributes.date}}
+    </div>
+  </header>
+{{/each}}
